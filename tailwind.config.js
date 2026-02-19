@@ -1,6 +1,5 @@
 ﻿module.exports = {
   content: ["./public/**/*.html", "./src/**/*.vue"],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -24,9 +23,6 @@
         "2xl": "1124px",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

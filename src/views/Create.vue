@@ -14,7 +14,10 @@
     <!-- Create -->
     <div class="p-8 flex items-start bg-light-grey rounded-md shadow-lg">
       <!-- Form -->
-      <form @submit.prevent="createWorkout" class="flex flex-col gap-y-5 w-full">
+      <form
+        @submit.prevent="createWorkout"
+        class="flex flex-col gap-y-5 w-full"
+      >
         <h1 class="text-2xl text-at-light-blue">Record Workout</h1>
 
         <!-- Workout Name -->
@@ -68,7 +71,9 @@
               />
             </div>
             <div class="flex flex-col flex-1">
-              <label for="sets" class="mb-1 text-sm text-at-light-blue">Sets </label>
+              <label for="sets" class="mb-1 text-sm text-at-light-blue"
+                >Sets
+              </label>
               <input
                 required
                 type="text"
@@ -77,7 +82,9 @@
               />
             </div>
             <div class="flex flex-col flex-1">
-              <label for="reps" class="mb-1 text-sm text-at-light-blue">Reps </label>
+              <label for="reps" class="mb-1 text-sm text-at-light-blue"
+                >Reps
+              </label>
               <input
                 required
                 type="text"
@@ -106,10 +113,7 @@
           <button
             @click="addExercise"
             type="button"
-            class="mt-6 py-2 px-6 rounded-sm self-start text-sm
-      text-white bg-at-light-blue duration-200 border-solid
-      border-2 border-transparent hover:border-at-light-blue hover:bg-white
-      hover:text-at-light-blue"
+            class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-blue duration-200 border-solid border-2 border-transparent hover:border-at-light-blue hover:bg-white hover:text-at-light-blue"
           >
             Add Exercise
           </button>
@@ -159,7 +163,9 @@
               />
             </div>
             <div class="flex flex-col flex-1">
-              <label for="pace" class="mb-1 text-sm text-at-light-blue">Pace </label>
+              <label for="pace" class="mb-1 text-sm text-at-light-blue"
+                >Pace
+              </label>
               <input
                 required
                 type="text"
@@ -177,10 +183,7 @@
           <button
             @click="addExercise"
             type="button"
-            class="mt-6 py-2 px-6 rounded-sm self-start text-sm
-      text-white bg-at-light-blue duration-200 border-solid
-      border-2 border-transparent hover:border-at-light-blue hover:bg-white
-      hover:text-at-light-blue"
+            class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-blue duration-200 border-solid border-2 border-transparent hover:border-at-light-blue hover:bg-white hover:text-at-light-blue"
           >
             Add Exercise
           </button>
@@ -188,10 +191,7 @@
 
         <button
           type="submit"
-          class="mt-6 py-2 px-6 rounded-sm self-start text-sm
-      text-white bg-at-light-blue duration-200 border-solid
-      border-2 border-transparent hover:border-at-light-blue hover:bg-white
-      hover:text-at-light-blue"
+          class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-blue duration-200 border-solid border-2 border-transparent hover:border-at-light-blue hover:bg-white hover:text-at-light-blue"
         >
           Record Workout
         </button>
@@ -204,6 +204,7 @@
 import { ref } from "vue";
 import { uid } from "uid";
 import { supabase } from "../supabase/init";
+import store from "../store/index";
 export default {
   name: "create",
   setup() {
@@ -238,10 +239,13 @@ export default {
     // Delete exercise
     const deleteExercise = (id) => {
       if (exercises.value.length > 1) {
-        exercises.value = exercises.value.filter((exercise) => exercise.id !== id);
+        exercises.value = exercises.value.filter(
+          (exercise) => exercise.id !== id,
+        );
         return;
       }
-      errorMsg.value = "Error: Cannot remove, need to at least have one exercise";
+      errorMsg.value =
+        "Error: Cannot remove, need to at least have one exercise";
       setTimeout(() => {
         errorMsg.value = false;
       }, 5000);
@@ -261,6 +265,7 @@ export default {
             workoutName: workoutName.value,
             workoutType: workoutType.value,
             exercises: exercises.value,
+            user_id: store.state.user.id,
           },
         ]);
         if (error) throw error;

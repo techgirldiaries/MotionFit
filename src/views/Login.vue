@@ -24,7 +24,9 @@
       </div>
 
       <div class="flex flex-col mb-2">
-        <label for="password" class="mb-1 text-sm text-at-light-blue">Password</label>
+        <label for="password" class="mb-1 text-sm text-at-light-blue"
+          >Password</label
+        >
         <input
           type="password"
           required
@@ -36,10 +38,7 @@
 
       <button
         type="submit"
-        class="mt-6 py-2 px-6 rounded-sm self-start text-sm
-      text-white bg-at-light-blue duration-200 border-solid
-      border-2 border-transparent hover:border-at-light-blue hover:bg-white
-      hover:text-at-light-blue"
+        class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-blue duration-200 border-solid border-2 border-transparent hover:border-at-light-blue hover:bg-white hover:text-at-light-blue"
       >
         Login
       </button>
@@ -68,7 +67,7 @@ export default {
     // Login function
     const login = async () => {
       try {
-        const { error } = await supabase.auth.signIn({
+        const { error } = await supabase.auth.signInWithPassword({
           email: email.value,
           password: password.value,
         });
