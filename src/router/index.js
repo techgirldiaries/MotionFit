@@ -55,7 +55,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
@@ -66,8 +66,9 @@ router.beforeEach((to, from, next) => {
 });
 
 // Route guard for auth routes
-router.beforeEach((to, from, next) => {
-  const user = supabase.auth.user();
+router.beforeEach(async (to, from, next) => {
+  const { data } = await supabase.auth.getSession();
+  const user = data.session?.user;
   if (to.matched.some((res) => res.meta.auth)) {
     if (user) {
       next();

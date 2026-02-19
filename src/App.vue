@@ -5,9 +5,9 @@
   </div>
 </template>
 
-<script> 
+<script>
 import Navigation from "./components/Navigation.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { supabase } from "./supabase/init";
 import store from "./store/index";
 export default {
@@ -18,13 +18,18 @@ export default {
     // Create data / vars
     const appReady = ref(null);
 
-    // Check to see if user is already logged in
-    const user = supabase.auth.user();
+    // Check to see if user is already logged in on mount
+    onMounted(async () => {
+      const { data } = await supabase.auth.getSession();
 
-    // If user does not exist, need to make app ready
-    if (!user) {
-      appReady.value = true;
-    }
+      // If user does not exist, need to make app ready
+      if (!data.session) {
+        appReady.value = true;
+      } else {
+        store.methods.setUser(data.session);
+        appReady.value = true;
+      }
+    });
 
     // Runs when there is a auth state change
     // if user is logged in, this will fire
