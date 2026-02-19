@@ -1,5 +1,5 @@
-module.exports = {
-  purge: { content: ["./public/**/*.html", "./src/**/*.vue"] },
+﻿module.exports = {
+  content: ["./public/**/*.html", "./src/**/*.vue"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -13,8 +13,8 @@ module.exports = {
       Poppins: ["Poppins, sans-serif"],
     },
     flex: {
-      "1": "1 1 0%",
-      "2": "2 2 0%",
+      1: "1 1 0%",
+      2: "2 2 0%",
     },
     container: {
       center: true,
