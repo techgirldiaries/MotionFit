@@ -1,6 +1,5 @@
-module.exports = {
-  purge: { content: ["./public/**/*.html", "./src/**/*.vue"] },
-  darkMode: false, // or 'media' or 'class'
+﻿module.exports = {
+  content: ["./public/**/*.html", "./src/**/*.vue"],
   theme: {
     extend: {
       colors: {
@@ -13,8 +12,8 @@ module.exports = {
       Poppins: ["Poppins, sans-serif"],
     },
     flex: {
-      "1": "1 1 0%",
-      "2": "2 2 0%",
+      1: "1 1 0%",
+      2: "2 2 0%",
     },
     container: {
       center: true,
@@ -24,9 +23,6 @@ module.exports = {
         "2xl": "1124px",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };
